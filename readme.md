@@ -12,13 +12,13 @@ Using Java version 11 and MongoDB version 6.0
 ### Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/khadeejath-shirin/shoparound.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd shoparound
 ```
 ### Database
 To setup MongoDB database create a folder `database` under root directory and copy the 
@@ -95,6 +95,68 @@ Sample request
 ```json
 {
 	"productId": "6384d24efe418f3c35f0268d",
-	"userId": "customer@example.com"
+	"userId": "1234"
 }
 ```
+
+#### 4. Get cart
+```http
+  GET /carts/{userId}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userId` | `string` | Id of the customer |
+
+#### 5. Remove product from cart
+```http
+  PATCH /carts
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `productId`      | `string` | Id of product to be added to cart |
+| `userId` | `string` | Id of the customer |
+
+Sample request
+```json
+{
+	"productId": "6384d24efe418f3c35f0268d",
+	"userId": "1234"
+}
+```
+
+#### 5. Add delivery address
+```http
+  PATCH /carts/address
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | Customer name |
+| `mobileNo` | `long` | Customer contact number |
+| `pinCode` | `int` | Pincode |
+| `houseName` | `string` | House name |
+| `place` | `string` | Customer place |
+| `userId` | `string` | Customer Id`|
+
+Sample request
+```json
+{
+	"name": "John",
+	"mobileNo": 9000123123,
+	"pinCode": 345457,
+	"houseName": "Villa Mary",
+	"place": "Kochi",
+	"userId": "1234"
+}
+```
+
+#### 6. Submit cart
+```http
+  PATCH /submit/{userId}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userId` | `string` | Id of the customer |
