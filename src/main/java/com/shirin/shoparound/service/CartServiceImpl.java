@@ -2,10 +2,10 @@ package com.shirin.shoparound.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.shirin.shoparound.entity.Address;
 import com.shirin.shoparound.entity.Cart;
 import com.shirin.shoparound.entity.CartRequest;
@@ -67,6 +67,22 @@ public class CartServiceImpl implements CartService {
         }
        
         
+        
+    }
+
+    @Override
+    public void deleteItemFromACart(CartRequest request) {
+      Optional<Cart> cart= repository.findByUserIdAndSubmittedFalse( request.getUserId());
+      if(cart.isPresent()){
+       List<Product>products= cart.get().getProducts();
+       Predicate<? super Product> predicate=product->product.getId().equals(request.getProductId());
+		products.removeIf(predicate);
+        repository.save(cart.get());
+    }else{
+        throw new RuntimeException("Cart Doesn't Exist");
+    }
+   
+
         
     }
 

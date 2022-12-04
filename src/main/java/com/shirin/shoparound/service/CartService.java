@@ -11,4 +11,5 @@ public interface CartService {
     Optional<Cart> getCart(String userId);
     void addAddress(Address address) ;
     void submit(String userId) ;
+    void deleteItemFromACart(CartRequest request);
 }

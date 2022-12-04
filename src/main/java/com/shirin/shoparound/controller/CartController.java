@@ -41,4 +41,10 @@ public class CartController {
     public void submit(@PathVariable  String userId){
         service.submit(userId);
     }
+
+
+    @PatchMapping()
+    public void deleteItemFromCart(@RequestBody CartRequest request){
+        service.deleteItemFromACart(request);
+    }
 }

@@ -160,3 +160,9 @@ Sample request
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `userId` | `string` | Id of the customer |
+
+
+
+## Author
+
+- [@khadeejath-shirin](https://github.com/khadeejath-shirin)
